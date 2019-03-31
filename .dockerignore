@@ -10,7 +10,6 @@ Dockerfile
 
 # Golang
 Gopkg.*
-vendor
 
 # Bin
 dock-dock-go

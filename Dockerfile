@@ -1,6 +1,6 @@
-FROM golang:1.12.1-alpine3.9
+FROM golang:1.12.1
 
-WORKDIR /go/src/dock-dock-go
+WORKDIR /go/src/github.com/HammerMeetNail/dock-dock-go
 COPY . .
 
 RUN go get -d -v 

@@ -13,7 +13,6 @@
 
 # Dep
 Gopkg.*
-vendor/*
 
 # Bin 
 dock-dock-go

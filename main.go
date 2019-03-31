@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"github.com/HammerMeetNail/dock-dock-go/pkg/stats"
 )
 
 func main() {
-	fmt.Println("Hello World")
+
 }
