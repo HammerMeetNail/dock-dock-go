@@ -4,6 +4,7 @@ WORKDIR /go/src/github.com/HammerMeetNail/dock-dock-go
 COPY . .
 
 RUN go get -d -v 
+RUN go test -v ./...
 RUN go install -v
 
 ENTRYPOINT ["dock-dock-go"]

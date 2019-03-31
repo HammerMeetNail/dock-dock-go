@@ -8,8 +8,8 @@ import (
 
 func main() {
 	cli := stats.Cli("1.39")
-	volumes := stats.GetVolumeSize(cli)
 
+	volumes := stats.GetVolumeSize(cli)
 	for name, size := range volumes {
 		fmt.Println(name, size)
 	}
