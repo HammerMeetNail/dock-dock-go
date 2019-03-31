@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-
+	stats.GetImages()
 }

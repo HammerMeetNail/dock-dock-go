@@ -12,7 +12,8 @@
 *.out
 
 # Dep
-Gopkg.*
+Gopkg.lock
+vendor
 
 # Bin 
 dock-dock-go
