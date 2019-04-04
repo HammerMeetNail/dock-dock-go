@@ -1,4 +1,4 @@
-package stats
+package clients
 
 import (
 	"github.com/docker/docker/client"
