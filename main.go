@@ -41,7 +41,12 @@ func main() {
 	// TARGET_URL, target_url_ok := os.LookupEnv("TARGET")
 
 	volumes := stats.GetVolumeSize(cli)
-	for name, size := range volumes {
-		fmt.Println(name, size)
+	if len(volumes) > 0 {
+		for name, size := range volumes {
+			fmt.Println(name, size)
+		}
+	} else {
+		fmt.Println("No volumes found")
 	}
+
 }
