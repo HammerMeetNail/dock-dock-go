@@ -15,3 +15,10 @@ A simple golang project for playing with the Docker API
 # Run
 `docker run dock-dock-go:local`
 
+# Options
+
+`DOCKER_VERSION`
+`LOG_LEVEL`
+`OUTPUT_FORMAT`
+`STATSD_SERVER_URL`
+
