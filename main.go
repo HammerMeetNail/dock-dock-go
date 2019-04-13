@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
-	// "strconv"
+	"strconv"
 	"time"
 
 	log "github.com/sirupsen/logrus"
@@ -27,18 +27,15 @@ func main() {
 	logLevel, ok := os.LookupEnv("LOG_LEVEL")
 
 	switch logLevel {
-	case "warn":
-		log.SetLevel(log.WarnLevel)
-		fmt.Println("Logging Set to Warn")
 	case "debug":
 		log.SetLevel(log.DebugLevel)
-		fmt.Println("Logging Set to Debug")
+		fmt.Println("Logging set to Debug")
 	default:
 		log.SetLevel(log.WarnLevel)
-		fmt.Println("Default")
+		fmt.Println("Logging set to Warn")
 	}
 
-	// Output
+	// Output Format
 	outputFormat, ok := os.LookupEnv("OUTPUT_FORMAT")
 
 	switch outputFormat {
@@ -53,17 +50,23 @@ func main() {
 
 	}
 
-	// outputInterval, ok := os.LookupEnv("OUTPUT_INTERVAL")
-	interval := 2
+	// Output Interval
+	outputInterval, ok := os.LookupEnv("OUTPUT_INTERVAL")
+	var interval int
 
-	// if ok {
-	// 	interval, err := strconv.Atoi(outputInterval)
-	// 	if err != nil {
-	// 		panic(err)
-	// 	}
-	// }
+	if ok {
+		var err error
+		interval, err = strconv.Atoi(outputInterval)
+		if err != nil {
+			panic(err)
+		}
+	} else {
+		interval = 2
+	}
 
+	// Output
 	for {
+		log.Info("Sending stats")
 		volumes := stats.GetVolumeSize(cli)
 		if len(volumes) > 0 {
 			for name, size := range volumes {
