@@ -36,13 +36,24 @@ func main() {
 	}
 
 	// Output Format
-	outputFormat, ok := os.LookupEnv("OUTPUT_FORMAT")
+	outputType, ok := os.LookupEnv("OUTPUT_TYPE")
 
-	switch outputFormat {
+	switch outputType {
 	case "statsd":
 
 		// ToDo add StatsD support
-		statsDServerURL, _ := os.LookupEnv("STATSD_SERVER_URL")
+		statsDServerURI, ok := os.LookupEnv("STATSD_SERVER_URI")
+		if !ok {
+			statsDServerURI = "http://localhost"
+		}
+
+		statsDServerPort, ok := os.LookupEnv("STATSD_SERVER_PORT")
+		if !ok {
+			statsDServerPort = "8125"
+		}
+
+		statsDServerURL := fmt.Sprintf("%s:%s", statsDServerURI, statsDServerPort)
+
 		fmt.Printf("Stats will output to StatsD Server at %s\n", statsDServerURL)
 
 	default:
