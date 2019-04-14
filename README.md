@@ -54,3 +54,6 @@ A simple golang project for playing with the Docker API
 
 
 `docker run -d --name graphite --restart=always -p 80:80 -p 81:81 -p 2003-2004:2003-2004 -p 2023-2024:2023-2024 -p 8125:8125/udp -p 8126:8126 hopsoft/graphite-statsd`
+
+`echo "deploys.test.myservice:1|c" | nc -w 1 -u 127.0.0.1 8125`
+`echo "automagic.vol1.size:71|g" | nc -w 1 -u 127.0.0.1 8125`
