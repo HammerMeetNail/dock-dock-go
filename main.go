@@ -8,15 +8,18 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
+	"github.com/alexcesaro/statsd"
+
 	"github.com/HammerMeetNail/dock-dock-go/pkg/clients"
 	"github.com/HammerMeetNail/dock-dock-go/pkg/stats"
 )
 
 type data struct {
-	dest string
-	url  string
-	name string
-	size int64
+	dest         string
+	url          string
+	name         string
+	size         int64
+	statsdClient statsd.Client
 }
 
 func output(data data) {
