@@ -51,3 +51,6 @@ A simple golang project for playing with the Docker API
 
 # Examples
 `docker build -t dock-dock-go:local . && docker run --rm -v /var/run/docker.sock:/var/run/docker.sock dock-dock-go:local`
+
+
+`docker run -d --name graphite --restart=always -p 80:80 -p 81:81 -p 2003-2004:2003-2004 -p 2023-2024:2023-2024 -p 8125:8125/udp -p 8126:8126 hopsoft/graphite-statsd`
