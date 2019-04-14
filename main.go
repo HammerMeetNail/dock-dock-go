@@ -12,6 +12,24 @@ import (
 	"github.com/HammerMeetNail/dock-dock-go/pkg/stats"
 )
 
+type data struct {
+	dest string
+	url  string
+	name string
+	size int64
+}
+
+func output(data data) {
+
+	switch data.dest {
+	case "statsd":
+		fmt.Println("Sending to statsd!!!!")
+	default:
+		fmt.Println(data.name, data.size)
+	}
+
+}
+
 func main() {
 
 	// Docker
@@ -23,7 +41,7 @@ func main() {
 		cli = clients.Cli(dockerVersion)
 	}
 
-	// // Logging
+	// Logging
 	logLevel, ok := os.LookupEnv("LOG_LEVEL")
 
 	switch logLevel {
@@ -37,11 +55,11 @@ func main() {
 
 	// Output Format
 	outputType, ok := os.LookupEnv("OUTPUT_TYPE")
+	data := data{dest: outputType}
 
 	switch outputType {
 	case "statsd":
 
-		// ToDo add StatsD support
 		statsDServerURI, ok := os.LookupEnv("STATSD_SERVER_URI")
 		if !ok {
 			statsDServerURI = "http://localhost"
@@ -54,6 +72,7 @@ func main() {
 
 		statsDServerURL := fmt.Sprintf("%s:%s", statsDServerURI, statsDServerPort)
 
+		// ToDo add StatsD support
 		fmt.Printf("Stats will output to StatsD Server at %s\n", statsDServerURL)
 
 	default:
@@ -78,13 +97,14 @@ func main() {
 	// Output
 	for {
 		log.Info("Sending stats")
+
 		volumes := stats.GetVolumeSize(cli)
 		if len(volumes) > 0 {
 			for name, size := range volumes {
-				fmt.Println(name, size)
+				data.name = name
+				data.size = size
+				output(data)
 			}
-		} else {
-			fmt.Println("No volumes found")
 		}
 
 		time.Sleep(time.Duration(interval) * time.Second)
