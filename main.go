@@ -91,7 +91,7 @@ func main() {
 			panic(err)
 		}
 	} else {
-		interval = 2
+		interval = 2000
 	}
 
 	// Output
@@ -107,7 +107,7 @@ func main() {
 			}
 		}
 
-		time.Sleep(time.Duration(interval) * time.Second)
+		time.Sleep(time.Duration(interval) * time.Millisecond)
 	}
 
 }

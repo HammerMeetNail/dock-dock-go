@@ -35,9 +35,9 @@ A simple golang project for playing with the Docker API
     * Default: `stdout`
 
 * **OUTPUT_INTERVAL** 
-    * Summary: How frequently, in seconds, to send output
+    * Summary: How frequently, in milliseconds, to send output
     * Valid Values: Integer >= `0`
-    * Default: `2`
+    * Default: `2000`
 
 * **STATSD_SERVER_URI** 
     * Summary: URI of StatsD server
@@ -50,10 +50,7 @@ A simple golang project for playing with the Docker API
     * Default: `8125`
 
 # Examples
-`docker build -t dock-dock-go:local . && docker run --rm -v /var/run/docker.sock:/var/run/docker.sock dock-dock-go:local`
-
-
-`docker run -d --name graphite --restart=always -p 80:80 -p 81:81 -p 2003-2004:2003-2004 -p 2023-2024:2023-2024 -p 8125:8125/udp -p 8126:8126 hopsoft/graphite-statsd`
+`docker-compose up -d`
 
 `echo "deploys.test.myservice:1|c" | nc -w 1 -u 127.0.0.1 8125`
 `echo "automagic.vol1.size:71|g" | nc -w 1 -u 127.0.0.1 8125`
